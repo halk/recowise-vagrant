@@ -43,4 +43,25 @@ class neo4j (
     match  => '^#org\.neo4j\.server\.webserver\.address=0\.0\.0\.0',
     notify => Service['neo4j-service']
   }
+
+  file_line { 'neo4j::disable auth':
+    path   => '/etc/neo4j/neo4j-server.properties',
+    line   => 'dbms.security.auth_enabled=false',
+    match  => '^dbms\.security\.auth_enabled=true',
+    notify => Service['neo4j-service']
+  }
+
+  file_line { 'neo4j::enable logging':
+    path   => '/etc/neo4j/neo4j-server.properties',
+    line   => 'org.neo4j.server.http.log.enabled=true',
+    match  => '^org\.neo4j\.server\.http\.log\.enabled=false',
+    notify => Service['neo4j-service']
+  }
+
+  file_line { 'neo4j::enable query logging':
+    path   => '/etc/neo4j/neo4j-http-logging.xml',
+    line   => '      <pattern>%h %l %user [%t{dd/MMM/yyyy:HH:mm:ss Z}] "%r" %s %b "%i{Referer}" "%i{User-Agent}" %D\nRequest: %fullRequest\nResponse: %fullResponse</pattern>',
+    match  => '"%i{User-Agent}" %D</pattern>',
+    notify => Service['neo4j-service']
+  }
 }

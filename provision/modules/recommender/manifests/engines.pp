@@ -7,6 +7,12 @@ class recommender::engines {
         group => 'vagrant'
     }
 
+    file { '/usr/local/src/go/bin':
+        ensure => 'directory',
+        owner => 'vagrant',
+        group => 'vagrant'
+    }
+
     file { ['/usr/local/src/go/src', '/usr/local/src/go/src/github.com', '/usr/local/src/go/src/github.com/halk']:
         ensure => 'directory',
         owner => 'vagrant',
