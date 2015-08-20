@@ -1,0 +1,27 @@
+---
+vagrantfile-local:
+    vm:
+        box: 'puppetlabs/ubuntu-14.04-64-puppet'
+        box_url: 'puppetlabs/ubuntu-14.04-64-puppet'
+        box_version: '1.0.1'
+        memory: '4096'
+        cpus: '1'
+        network:
+            private_network: '192.168.56.101'
+        provider:
+            chosen: vmware
+
+            virtualbox:
+                modifyvm:
+                    natdnshostresolver1: on
+            vmware:
+                numvcpus: 1
+        provision:
+            puppet:
+                manifests_path: provision/manifests
+                manifest_file: init.pp
+                module_path: provision/modules
+                options:
+                    - '--verbose'
+                    - '--hiera_config /vagrant/provision/hiera.yaml'
+                    - '--parser future'

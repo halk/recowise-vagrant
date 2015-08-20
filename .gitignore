@@ -1,0 +1,59 @@
+.vagrant
+.idea
+.DS_Store
+
+#
+# FRAMEWORK
+#
+
+framework/log/*
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+#
+# ENGINES
+#
+
+# inCommon
+engines/inCommon/log/*
+!engines/inCommon/log/.gitkeep
+engines/inCommon/_vendor
+
+# itemSimilarity
+engines/itemSimilarity/cache
+engines/itemSimilarity/web/cache
+engines/itemSimilarity/vendor
+engines/itemSimilarity/log/*
+!engines/inCommon/log/.gitkeep
+
+#
+# DEMOS
+#
+
+# MAGENTO
+
+demos/magento/*
+!demos/magento/composer.json
+!demos/magento/composer.lock
+
+# to allow mixed ignore and tracked file, we need to do this thing :(
+!demos/magento/app
+demos/magento/app/*
+!demos/magento/app/code
+demos/magento/app/code/*
+!demos/magento/app/code/Koklu
+!demos/magento/dev
+demos/magento/dev/*
+!demos/magento/dev/shell
+demos/magento/dev/shell/*
+!demos/magento/dev/shell/masterdata.php
+!demos/magento/lib
+demos/magento/lib/*
+!demos/magento/lib/internal
+demos/magento/lib/internal/*
+!demos/magento/lib/internal/Koklu
+!demos/magento/pub
+demos/magento/pub/*
+!demos/magento/pub/pub

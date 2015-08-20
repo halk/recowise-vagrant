@@ -1,0 +1,78 @@
+[submodule "demo"]
+	path = demo
+	url = https://github.com/halk/recowise-magento2-demo.git
+[submodule "engines/inCommon"]
+	path = engines/inCommon
+	url = https://github.com/halk/in-common.git
+[submodule "engines/itemSimilarity"]
+	path = engines/itemSimilarity
+	url = https://github.com/halk/item-similarity.git
+[submodule "framework"]
+	path = framework
+	url = https://github.com/halk/recowise.git
+[submodule "provision/modules/apt"]
+	path = provision/modules/apt
+	url = https://github.com/puppetlabs/puppetlabs-apt.git
+[submodule "provision/modules/stdlib"]
+	path = provision/modules/stdlib
+	url = https://github.com/puppetlabs/puppetlabs-stdlib.git
+[submodule "provision/modules/percona"]
+	path = provision/modules/percona
+	url = https://github.com/arioch/puppet-percona.git
+[submodule "provision/modules/apache"]
+	path = provision/modules/apache
+	url = https://github.com/puppetlabs/puppetlabs-apache.git
+[submodule "provision/modules/concat"]
+	path = provision/modules/concat
+	url = https://github.com/puppetlabs/puppetlabs-concat.git
+[submodule "provision/modules/redis"]
+	path = provision/modules/redis
+	url = https://github.com/thomasvandoren/puppet-redis.git
+[submodule "provision/modules/wget"]
+	path = provision/modules/wget
+	url = https://github.com/maestrodev/puppet-wget.git
+[submodule "provision/modules/gcc"]
+	path = provision/modules/gcc
+	url = https://github.com/puppetlabs/puppetlabs-gcc
+[submodule "provision/modules/python"]
+	path = provision/modules/python
+	url = https://github.com/stankevich/puppet-python.git
+[submodule "provision/modules/rabbitmq"]
+	path = provision/modules/rabbitmq
+	url = https://github.com/puppetlabs/puppetlabs-rabbitmq.git
+[submodule "provision/modules/staging"]
+	path = provision/modules/staging
+	url = https://github.com/nanliu/puppet-staging.git
+[submodule "provision/modules/erlang"]
+	path = provision/modules/erlang
+	url = https://github.com/garethr/garethr-erlang.git
+[submodule "provision/modules/vim"]
+	path = provision/modules/vim
+	url = https://github.com/saz/puppet-vim.git
+[submodule "provision/modules/php"]
+	path = provision/modules/php
+	url = https://github.com/Mayflower/puppet-php
+[submodule "provision/modules/zypprepo"]
+	path = provision/modules/zypprepo
+	url = https://github.com/deadpoint/puppet-zypprepo
+[submodule "provision/modules/inifile"]
+	path = provision/modules/inifile
+	url = https://github.com/puppetlabs/puppetlabs-inifile
+[submodule "provision/modules/ruby"]
+	path = provision/modules/ruby
+	url = https://github.com/puppetlabs/puppetlabs-ruby
+[submodule "provision/modules/timezone"]
+	path = provision/modules/timezone
+	url = https://github.com/saz/puppet-timezone
+[submodule "provision/modules/supervisord"]
+	path = provision/modules/supervisord
+	url = https://github.com/ajcrowe/puppet-supervisord.git
+[submodule "provision/modules/golang"]
+	path = provision/modules/golang
+	url = https://github.com/dcoxall/dcoxall-golang.git
+[submodule "provision/modules/limits"]
+	path = provision/modules/limits
+	url = https://github.com/puppetlabs/puppetlabs-limits.git
+[submodule "provision/modules/mongodb"]
+	path = provision/modules/mongodb
+	url = https://github.com/puppetlabs/puppetlabs-mongodb.git

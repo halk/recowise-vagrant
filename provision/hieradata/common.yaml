@@ -1,0 +1,86 @@
+---
+apache::default_vhost: false
+apache::error_documents: true
+
+apt::always_apt_update: true
+apt::apt_update_frequency: daily
+apt::fancy_progress: true
+
+hiera2define::apt_ppas::ppas:
+    'ppa:brightbox/ruby-ng-experimental': {}
+    'ppa:ondrej/php5-5.6': {}
+hiera2define::apache_mods::mods:
+    proxy: {}
+    proxy_fcgi: {}
+    rewrite: {}
+
+golang::version: 1.4.2
+golang::workspace: /usr/local/src/go
+
+magento::install::db_name: magento
+magento::install::db_user: magento
+magento::install::db_pass: magento
+magento::install::backend_frontname: admin
+magento::install::admin_user: magento2
+magento::install::admin_pass: magento2
+magento::install::admin_email: halil@koklu.me
+magento::install::admin_firstname: Halil
+magento::install::admin_lastname: Koklu
+magento::install::base_url: 'http://magento.msc.koklu.me'
+magento::install::language: en_US
+magento::install::currency: GBP
+magento::install::timezone: 'Europe/London'
+
+percona::server: true
+percona::percona_version: '5.6'
+percona::manage_repo: true
+
+php::manage_repos: false
+php::composer: true
+php::pear: true
+php::dev: true
+php::fpm: true
+php::settings:
+    'Date/date.timezone': 'Europe/London'
+    'PHP/memory_limit': '1G'
+    'PHP/display_errors': 'On'
+    'PHP/display_startup_errors': 'On'
+    'PHP/html_errors': 'On'
+php::fpm::settings:
+    'PHP/short_open_tag': 'On'
+php::extensions:
+    mcrypt: {}
+    mysql: {}
+    gd: {}
+    curl: {}
+    intl: {}
+    xsl: {}
+    mongo: {}
+    xdebug:
+        settings:
+            'xdebug.remote_enable': 'On'
+            'xdebug.idekey': 'PHPStorm'
+            'xdebug.remote_connect_back': 'On'
+            'xdebug.max_nesting_level': 500
+            'xdebug.remote_port': 9001
+
+python::pip: false
+python::virtualenv: true
+python::dev: true
+
+rabbitmq::default_user: vagrant
+rabbitmq::default_password: vagrant
+rabbitmq::delete_guest_user: true
+rabbitmq::package_apt_pin: '500'
+
+redis::version: 2.8.19
+
+ruby::version: 2.1.5
+ruby::rubygems_update: true
+ruby::suppress_warnings: true
+
+timezone::timezone: 'Europe/London'
+
+vim::autoupgrade: true
+
+zsh::exec_path: '/usr/local/go/bin:/usr/local/src/go/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin'
