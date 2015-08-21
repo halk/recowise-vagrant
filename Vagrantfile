@@ -3,17 +3,14 @@
 require 'yaml'
 require 'pathname'
 
-dir = File.dirname(File.expand_path(__FILE__))
+$dir = File.dirname(File.expand_path(__FILE__))
 
-configValues = YAML.load_file("#{dir}/provision/config.yaml")
+configValues = YAML.load_file("#{$dir}/provision/config.yaml")
 data         = configValues['vagrantfile-local']
 
-Vagrant.configure('2') do |config|
-    config.vm.box     = "#{data['vm']['box']}"
-
+def box_url(config, data, provider)
     # detect local boxes (required for MSc DVD submission)
-    potential_provider = (ARGV[2] || ENV['VAGRANT_DEFAULT_PROVIDER'] || :virtualbox).to_sym
-    local_box = sprintf('%s/../boxes/recowise_%s_%s.box', dir, potential_provider, data['vm']['box_version'])
+    local_box = sprintf('%s/../Virtual Machine/recowise_%s_%s.box', $dir, provider, data['vm']['box_version'])
 
     if File.exists? local_box
         config.vm.box_url = local_box
@@ -22,6 +19,10 @@ Vagrant.configure('2') do |config|
         config.vm.box_url = "#{data['vm']['box_url']}"
         config.vm.box_version = "#{data['vm']['box_version']}"
     end
+end
+
+Vagrant.configure('2') do |config|
+    config.vm.box     = "#{data['vm']['box']}"
 
     config.vm.network :private_network, ip: "#{data['vm']['network']['private_network']}"
 
@@ -34,12 +35,14 @@ Vagrant.configure('2') do |config|
     end
 
     config.vm.provider :virtualbox do |virtualbox|
+        box_url(config, data, 'virtualbox')
         virtualbox.customize ['modifyvm', :id, '--memory', "#{data['vm']['memory']}"]
         virtualbox.customize ['modifyvm', :id, '--cpus',   "#{data['vm']['cpus']}"]
         virtualbox.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
     end
 
     config.vm.provider :vmware_fusion do |vmware, override|
+        box_url(config, data, 'vmware_fusion')
         vmware.vmx['displayName'] = config.vm.box
         vmware.vmx['memsize']     = "#{data['vm']['memory']}"
         vmware.vmx['numvcpus']    = "#{data['vm']['cpus']}"
