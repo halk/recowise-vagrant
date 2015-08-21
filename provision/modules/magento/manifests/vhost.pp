@@ -1,4 +1,6 @@
 class magento::vhost {
+    # adding vhost
+
     apache::vhost { 'magento.msc.koklu.me':
         docroot         => '/vagrant/demo/pub',
         default_vhost   => true,

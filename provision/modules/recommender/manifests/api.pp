@@ -7,6 +7,6 @@ class recommender::api {
         wsgi_script_aliases    => {'/' => '/vagrant/framework/api.wsgi'},
         wsgi_process_group     => 'api',
         wsgi_application_group => '%{GLOBAL}',
-        require                => Exec['install pip requirements']
+        require                => Python::Virtualenv['/vagrant/framework']
     }
 }

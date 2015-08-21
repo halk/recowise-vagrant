@@ -6,7 +6,7 @@ class recommender::flower {
         redirect_source        => ['/'],
         redirect_dest          => ['http://flower.msc.koklu.me:5555/'],
         redirect_status        => ['permanent'],
-        require                => Exec['install pip requirements']
+        require                => Python::Virtualenv['/vagrant/framework']
     }
 
     supervisord::program { 'flower':

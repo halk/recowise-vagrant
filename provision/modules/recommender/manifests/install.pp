@@ -11,34 +11,14 @@ class recommender::install {
         ensure => 'present'
     }
 
-    exec { 'install pip':
-        unless  => 'which pip',
-        command => 'easy_install -U pip',
-        require => Package['python-setuptools']
-    }
-
-    python::pip { 'install virtualenvwrapper':
-        pkgname => 'virtualenvwrapper',
+    python::virtualenv { '/vagrant/framework':
         ensure  => 'present',
-        require => Exec['install pip']
-    }
-
-    exec { 'mkvirtualenv':
-        unless      => 'ls /home/vagrant/.virtualenvs/framework',
-        cwd         => '/vagrant/framework',
-        command     => "bash -c 'source /usr/local/bin/virtualenvwrapper.sh && mkvirtualenv framework'",
-        environment => 'WORKON_HOME=/home/vagrant/.virtualenvs',
-        user        => 'vagrant',
-        require     => Python::Pip['install virtualenvwrapper']
-    }
-
-    exec { 'install pip requirements':
-        unless      => 'ls /home/vagrant/.virtualenvs/framework/bin/celery',
-        cwd         => '/vagrant/framework',
-        command     => "bash -c 'source /usr/local/bin/virtualenvwrapper.sh && workon framework && pip install -r requirements.txt'",
-        environment => 'WORKON_HOME=/home/vagrant/.virtualenvs',
-        user        => 'vagrant',
-        require     => [Package['libxml2-dev'], Package['libxslt1-dev'], Exec['mkvirtualenv']]
+        version => 'system',
+        requirements => '/vagrant/framework/requirements.txt',
+        venv_dir => '/home/vagrant/.virtualenvs/framework',
+        owner => 'vagrant',
+        group => 'vagrant',
+        cwd => '/vagrant/framework'
     }
 
     file { '/vagrant/framework/config/config.xml':

@@ -46,5 +46,5 @@ Vagrant.configure('2') do |config|
         if !data['vm']['provision']['puppet']['options'].empty?
           puppet.options = data['vm']['provision']['puppet']['options']
         end
-  end
+    end
 end

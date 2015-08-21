@@ -40,8 +40,8 @@ php::composer: true
 php::pear: true
 php::dev: true
 php::fpm: true
-php::fpm_user: vagrant
-php::fpm_group: vagrant
+php::fpm::config::user: vagrant
+php::fpm::config::group: vagrant
 php::settings:
     'Date/date.timezone': 'Europe/London'
     'PHP/memory_limit': '1G'
