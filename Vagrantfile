@@ -22,24 +22,16 @@ Vagrant.configure('2') do |config|
         end
     end
 
-    if data['vm']['provider']['chosen'].empty? || data['vm']['provider']['chosen'] == 'virtualbox'
-        ENV['VAGRANT_DEFAULT_PROVIDER'] = 'virtualbox'
-        config.vm.provider :virtualbox do |virtualbox|
-            virtualbox.customize ["modifyvm", :id, "--name",   "#{data['vm']['box']}"]
-            virtualbox.customize ['modifyvm', :id, '--memory', "#{data['vm']['memory']}"]
-            virtualbox.customize ['modifyvm', :id, '--cpus',   "#{data['vm']['cpus']}"]
-            virtualbox.customize ["modifyvm", :id, "--natdnshostresolver1", "#{data['vm']['provider']['virtualbox']['modifyvm']['natdnshostresolver1']}"]
-        end
+    config.vm.provider :virtualbox do |virtualbox|
+        virtualbox.customize ['modifyvm', :id, '--memory', "#{data['vm']['memory']}"]
+        virtualbox.customize ['modifyvm', :id, '--cpus',   "#{data['vm']['cpus']}"]
+        virtualbox.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
     end
 
-    if data['vm']['provider']['chosen'] == 'vmware'
-        ENV['VAGRANT_DEFAULT_PROVIDER'] = 'vmware_fusion'
-
-        config.vm.provider :vmware_fusion do |vmware, override|
-            vmware.vmx['displayName'] = config.vm.box
-            vmware.vmx['memsize']     = "#{data['vm']['memory']}"
-            vmware.vmx['numvcpus']    = "#{data['vm']['cpus']}"
-        end
+    config.vm.provider :vmware_fusion do |vmware, override|
+        vmware.vmx['displayName'] = config.vm.box
+        vmware.vmx['memsize']     = "#{data['vm']['memory']}"
+        vmware.vmx['numvcpus']    = "#{data['vm']['cpus']}"
     end
 
     config.vm.provision :puppet do |puppet|

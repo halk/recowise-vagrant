@@ -46,4 +46,11 @@ class magento::install (
         user    => 'vagrant',
         require => [Exec['create-composer-project'], Percona::Database[$db_name], Percona::Rights["${db_user}@localhost/${db_name}"]]
     }
+
+    file_line { 'disable FPC':
+        path   => '/vagrant/demo/app/etc/config.php',
+        line   => '    \'full_page\' => 0,',
+        match  => '    \'full_page\' => 1,',
+        require => Exec['install-magento']
+    }
 }

@@ -4,13 +4,11 @@ vagrantfile-local:
         box: 'puppetlabs/ubuntu-14.04-64-puppet'
         box_url: 'puppetlabs/ubuntu-14.04-64-puppet'
         box_version: '1.0.1'
-        memory: '4096'
+        memory: '3072'
         cpus: '1'
         network:
             private_network: '192.168.56.101'
         provider:
-            chosen: vmware
-
             virtualbox:
                 modifyvm:
                     natdnshostresolver1: on
