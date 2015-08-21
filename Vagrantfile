@@ -1,6 +1,7 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 require 'yaml'
+require 'pathname'
 
 dir = File.dirname(File.expand_path(__FILE__))
 
@@ -9,8 +10,18 @@ data         = configValues['vagrantfile-local']
 
 Vagrant.configure('2') do |config|
     config.vm.box     = "#{data['vm']['box']}"
-    config.vm.box_url = "#{data['vm']['box_url']}"
-    config.vm.box_version = "#{data['vm']['box_version']}"
+
+    # detect local boxes (required for MSc DVD submission)
+    potential_provider = (ARGV[2] || ENV['VAGRANT_DEFAULT_PROVIDER'] || :virtualbox).to_sym
+    local_box = sprintf('%s/../boxes/recowise_%s_%s.box', dir, potential_provider, data['vm']['box_version'])
+
+    if File.exists? local_box
+        config.vm.box_url = local_box
+    # use boxes on Atlas
+    else
+        config.vm.box_url = "#{data['vm']['box_url']}"
+        config.vm.box_version = "#{data['vm']['box_version']}"
+    end
 
     config.vm.network :private_network, ip: "#{data['vm']['network']['private_network']}"
 

@@ -1,9 +1,9 @@
 ---
 vagrantfile-local:
     vm:
-        box: 'puppetlabs/ubuntu-14.04-64-puppet'
-        box_url: 'puppetlabs/ubuntu-14.04-64-puppet'
-        box_version: '1.0.1'
+        box: 'halk/recowise'
+        box_url: 'halk/recowise'
+        box_version: '0.1.0'
         memory: '3072'
         cpus: '1'
         network:
