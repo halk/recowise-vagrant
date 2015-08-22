@@ -2,7 +2,7 @@
 
 This repository provides a [Vagrant](https://www.vagrantup.com/) environment to run and demo [RecoWise](https://github.com/halk/recowise) - the multi-purpose recommendation framework.
 
-This work is part of my Master of Science [project](git@github.com:halk/msc-project-report.git).
+This work is part of my Master of Science [project](https://github.com/halk/msc-project-report).
 
 ## Provisioning
 
