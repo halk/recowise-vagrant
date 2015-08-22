@@ -1,6 +1,8 @@
+[![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/halk/recowise-vagrant/blob/master/LICENSE)
+
 # Vagrant provisioning for RecoWise
 
-This repository provides a [Vagrant](https://www.vagrantup.com/) environment to run and demo [RecoWise](https://github.com/halk/recowise) - the multi-purpose recommendation framework.
+This repository provides a [Vagrant](https://www.vagrantup.com/) environment to run and demo [RecoWise](https://github.com/halk/recowise) - an integration framework for recommenders.
 
 This work is part of my Master of Science [project](https://github.com/halk/msc-project-report).
 
@@ -28,7 +30,9 @@ The puppet recipes largely rely on PuppetForge. The recipes for [Magento2](https
 
 ### Installation
 
-    # change to a directory of your choice (e.g. $HOME/src)
-    $ git clone --recursive https://github.com/halk/recowise-vagrant.git
-    $ cd recowise-vagrant
-    $ vagrant up
+```bash
+# change to a directory of your choice (e.g. $HOME/src)
+$ git clone --recursive https://github.com/halk/recowise-vagrant.git
+$ cd recowise-vagrant
+$ vagrant up
+```
