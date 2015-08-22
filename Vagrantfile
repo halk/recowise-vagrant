@@ -34,15 +34,22 @@ Vagrant.configure('2') do |config|
         end
     end
 
-    config.vm.provider :virtualbox do |virtualbox|
-        box_url(config, data, 'virtualbox')
+    config.vm.provider :virtualbox do |virtualbox, override|
+        box_url(override, data, 'virtualbox')
         virtualbox.customize ['modifyvm', :id, '--memory', "#{data['vm']['memory']}"]
         virtualbox.customize ['modifyvm', :id, '--cpus',   "#{data['vm']['cpus']}"]
         virtualbox.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
     end
 
     config.vm.provider :vmware_fusion do |vmware, override|
-        box_url(config, data, 'vmware_fusion')
+        box_url(override, data, 'vmware_desktop')
+        vmware.vmx['displayName'] = config.vm.box
+        vmware.vmx['memsize']     = "#{data['vm']['memory']}"
+        vmware.vmx['numvcpus']    = "#{data['vm']['cpus']}"
+    end
+
+    config.vm.provider :vmware_workstation do |vmware, override|
+        box_url(override, data, 'vmware_desktop')
         vmware.vmx['displayName'] = config.vm.box
         vmware.vmx['memsize']     = "#{data['vm']['memory']}"
         vmware.vmx['numvcpus']    = "#{data['vm']['cpus']}"
